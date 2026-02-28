@@ -366,7 +366,7 @@
 
     .hero-content {
       position: relative;
-      z-index: 1;
+      z-index: 3;
       max-width: 1200px;
       width: 100%;
       margin: 0 auto;
@@ -378,12 +378,13 @@
     .hero-image,
     .hero-img-wrap {
       position: absolute;
-      right: 0;
       top: 0;
+      left: 0;
+      width: 100%;
       height: 100%;
-      width: 55%;
       z-index: 0;
       pointer-events: none;
+      overflow: hidden;
     }
 
     .hero-image img,
@@ -393,26 +394,31 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center top;
+      object-position: center center;
       display: block;
       border: none;
       box-shadow: none;
-      filter: contrast(1.4) brightness(0.75) sepia(0.1);
+      filter: contrast(1.3) brightness(0.55) sepia(0.1);
       animation: imgGlitch 6s infinite;
-      mask-image: linear-gradient(
-        to left,
-        rgba(0,0,0,0.85) 30%,
-        rgba(0,0,0,0.5) 60%,
-        rgba(0,0,0,0) 100%
-      );
-      -webkit-mask-image: linear-gradient(
-        to left,
-        rgba(0,0,0,0.85) 30%,
-        rgba(0,0,0,0.5) 60%,
-        rgba(0,0,0,0) 100%
-      );
     }
 
+    /* Dark overlay so text stays readable */
+    .hero-image::before,
+    .hero-img-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(
+        to right,
+        rgba(0,0,0,0.85) 0%,
+        rgba(0,0,0,0.5) 50%,
+        rgba(0,0,0,0.2) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Scanlines on top */
     .hero-image::after,
     .hero-img-wrap::after {
       content: '';
@@ -426,63 +432,57 @@
         rgba(0,0,0,0.12) 4px
       );
       pointer-events: none;
-      z-index: 1;
-    }
-
-    .hero-image::before,
-    .hero-img-wrap::before {
-      display: none;
+      z-index: 2;
     }
 
     @keyframes imgGlitch {
       0%, 88%, 100% {
         clip-path: none;
         transform: translate(0);
-        filter: contrast(1.4) brightness(0.75) sepia(0.1);
+        filter: contrast(1.3) brightness(0.55) sepia(0.1);
       }
       89% {
         clip-path: inset(20% 0 50% 0);
-        transform: translate(-6px, 0);
-        filter: contrast(1.4) brightness(0.75) sepia(0.1) hue-rotate(90deg);
+        transform: translate(-4px, 0);
+        filter: contrast(1.3) brightness(0.55) sepia(0.1) hue-rotate(90deg);
       }
       91% {
         clip-path: inset(60% 0 10% 0);
-        transform: translate(6px, 0);
-        filter: contrast(1.4) brightness(0.75) sepia(0.1) hue-rotate(-90deg);
+        transform: translate(4px, 0);
+        filter: contrast(1.3) brightness(0.55) sepia(0.1) hue-rotate(-90deg);
       }
       93% {
         clip-path: inset(40% 0 30% 0);
-        transform: translate(-3px, 0);
-        filter: contrast(2) brightness(1.0) sepia(0);
+        transform: translate(-2px, 0);
+        filter: contrast(1.8) brightness(0.8) sepia(0);
       }
       95% {
         clip-path: none;
         transform: translate(0);
-        filter: contrast(1.4) brightness(0.75) sepia(0.1);
+        filter: contrast(1.3) brightness(0.55) sepia(0.1);
       }
     }
 
-    /* Hero layout — image behind, text in front */
+    /* Hero section must be relative and text must be above image */
     #hero {
       position: relative;
       overflow: hidden;
-      flex-direction: row;
+      display: flex;
       align-items: center;
+      flex-direction: row;
     }
 
     .hero-text {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       flex: 1;
     }
 
     @media (max-width: 768px) {
-      .hero-image, .hero-img-wrap {
-        width: 100%;
-        height: 50%;
-        top: auto;
-        bottom: 0;
-        opacity: 0.4;
+      .hero-image img,
+      .hero-img-wrap img,
+      .hero-artist-img {
+        object-position: center top;
       }
     }
 
@@ -1442,6 +1442,9 @@
        HERO
        ============================ -->
   <section id="hero">
+    <div class="hero-image">
+      <img src="assets/photos/artist-hero.JPEG" alt="ACYD" class="artist-photo" />
+    </div>
     <div class="status-badge">
       <span class="status-dot"></span>SYSTEM ONLINE
     </div>
@@ -1454,9 +1457,6 @@
           <a href="#music" class="btn">LISTEN NOW</a>
           <a href="#contact" class="btn">BOOK ACYD</a>
         </div>
-      </div>
-      <div class="hero-image">
-        <img src="assets/photos/artist-hero.JPEG" alt="ACYD" class="artist-photo" />
       </div>
     </div>
   </section>
