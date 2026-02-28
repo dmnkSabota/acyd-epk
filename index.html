@@ -1,0 +1,2287 @@
+<!--
+// ============================================
+// ACYD EPK — index.html
+// EDIT GUIDE:
+// - Search [PLACEHOLDER] to find all editable fields
+// - /assets/photos/ — drop press photos here
+// - /assets/presskit/ — drop PDF files here
+// - Replace YouTube embed IDs in #videos section
+// - Replace SoundCloud embed URLs in #music section
+// - Connect form to Formspree: change form action to https://formspree.io/f/YOUR_ID
+// ============================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACYD — Official EPK</title>
+
+  <!-- SEO -->
+  <meta name="description" content="ACYD is a Slovak multi-genre experimental rapper, sound engineer, and self-taught producer based in Brno, Czech Republic. Known for his anarchistic, anti-establishment and system-provoking lyrics blended with boundary-pushing sound." />
+  <meta name="keywords" content="ACYD, experimental rap, Slovak rapper Brno, underground hip hop EPK booking, SUSHI BIZNIS TECHNO, SHITTIN BRIXX" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="ACYD — Official EPK" />
+  <meta property="og:description" content="ACYD is a Slovak multi-genre experimental rapper, sound engineer, and self-taught producer based in Brno, Czech Republic. Known for his anarchistic, anti-establishment and system-provoking lyrics blended with boundary-pushing sound." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/og-image.jpg" /><!-- [PLACEHOLDER] Replace with real OG image -->
+
+  <!-- Favicon: yellow square inline SVG -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23FFE600'/></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    /* ============================
+       RESET & BASE
+       ============================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --yellow: #FFE600;
+      --black: #000000;
+      --dark: #111111;
+      --darker: #1a1a1a;
+      --grey: #555555;
+      --red: #ff2222;
+      --cyan: #00ffff;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--black);
+      color: var(--yellow);
+      font-family: 'IBM Plex Mono', monospace;
+      cursor: crosshair;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* CRT scanline overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.15) 2px,
+        rgba(0,0,0,0.15) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Grid lines overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        linear-gradient(rgba(255,230,0,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,230,0,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 9998;
+    }
+
+    /* CTOS Watermark */
+    .ctos-watermark {
+      position: fixed;
+      bottom: 12px;
+      left: 16px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      color: var(--yellow);
+      opacity: 0.5;
+      z-index: 10000;
+      pointer-events: none;
+      letter-spacing: 0.05em;
+    }
+
+    /* Typography */
+    h1, h2, h3 {
+      font-family: 'VT323', monospace;
+      text-shadow: 0 0 8px var(--yellow), 0 0 20px var(--yellow);
+    }
+
+    h4, h5, .subheading {
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    /* Section divider */
+    .section-divider {
+      border: none;
+      border-top: 1px dashed var(--yellow);
+      margin: 3rem 0;
+      opacity: 0.6;
+    }
+
+    /* Section header */
+    .section-header {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1rem;
+      color: var(--yellow);
+      margin-bottom: 2rem;
+      letter-spacing: 0.1em;
+      opacity: 0.85;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Section padding */
+    section {
+      padding: 5rem 0;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--yellow);
+      background: transparent;
+      border: 1px solid var(--yellow);
+      padding: 0.6rem 1.2rem;
+      cursor: crosshair;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: background 0.15s, color 0.15s;
+      box-shadow: 0 0 8px rgba(255,230,0,0.2);
+    }
+
+    .btn::before {
+      content: '>> ';
+    }
+
+    .btn:hover {
+      background: var(--yellow);
+      color: var(--black);
+      box-shadow: 0 0 12px var(--yellow);
+    }
+
+    /* Terminal window */
+    .terminal-window {
+      background: var(--dark);
+      border: 1px solid var(--yellow);
+      margin-bottom: 1.5rem;
+    }
+
+    .terminal-titlebar {
+      background: var(--darker);
+      border-bottom: 1px solid var(--yellow);
+      padding: 0.4rem 0.8rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--yellow);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .terminal-titlebar::before {
+      content: '● ● ●';
+      color: var(--grey);
+      font-size: 0.6rem;
+      margin-right: 0.5rem;
+    }
+
+    .terminal-body {
+      padding: 1.2rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #ccc;
+    }
+
+    .terminal-body .prompt {
+      color: var(--yellow);
+    }
+
+    /* Tags/chips */
+    .tag {
+      display: inline-block;
+      border: 1px solid var(--yellow);
+      padding: 0.2rem 0.6rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--yellow);
+      margin: 0.2rem;
+      letter-spacing: 0.05em;
+    }
+
+    .tag.green { border-color: #00ff88; color: #00ff88; }
+    .tag.red { border-color: var(--red); color: var(--red); }
+    .tag.grey { border-color: var(--grey); color: var(--grey); }
+
+    /* ============================
+       NAVIGATION
+       ============================ */
+    #navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.95);
+      border-bottom: 1px solid var(--yellow);
+      backdrop-filter: blur(4px);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .nav-brand {
+      font-family: 'VT323', monospace;
+      font-size: 1.6rem;
+      color: var(--yellow);
+      text-shadow: 0 0 8px var(--yellow);
+      letter-spacing: 0.1em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links li {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links li:not(:last-child)::after {
+      content: '|';
+      color: var(--grey);
+      margin: 0 0.3rem;
+      font-size: 0.75rem;
+    }
+
+    .nav-links a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--grey);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.15s;
+      padding: 0.2rem 0;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--yellow);
+      text-shadow: 0 0 8px var(--yellow);
+    }
+
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      font-size: 1rem;
+      padding: 0.3rem 0.6rem;
+      cursor: crosshair;
+    }
+
+    @media (max-width: 768px) {
+      .nav-hamburger { display: block; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0.8rem 0;
+        border-top: 1px dashed var(--yellow);
+        margin-top: 0.5rem;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li:not(:last-child)::after { display: none; }
+      .nav-inner { flex-wrap: wrap; }
+    }
+
+    /* ============================
+       HERO
+       ============================ */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Noise/grain filter */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+      opacity: 0.25;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* CRT flicker */
+    @keyframes crtFlicker {
+      0%, 100% { opacity: 1; }
+      92% { opacity: 1; }
+      93% { opacity: 0.85; }
+      94% { opacity: 1; }
+      96% { opacity: 0.9; }
+      97% { opacity: 1; }
+    }
+
+    #hero { animation: crtFlicker 8s infinite; }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Glitch animation */
+    @keyframes glitch1 {
+      0%, 100% { clip-path: inset(0 0 98% 0); transform: translate(-4px, 0); color: var(--red); }
+      20% { clip-path: inset(30% 0 50% 0); transform: translate(4px, 0); color: var(--cyan); }
+      40% { clip-path: inset(70% 0 15% 0); transform: translate(-2px, 0); color: var(--red); }
+      60% { clip-path: inset(15% 0 70% 0); transform: translate(2px, 0); color: var(--cyan); }
+      80% { clip-path: inset(50% 0 30% 0); transform: translate(-4px, 0); color: var(--red); }
+    }
+
+    @keyframes glitch2 {
+      0%, 100% { clip-path: inset(95% 0 0 0); transform: translate(3px, 0); }
+      25% { clip-path: inset(10% 0 80% 0); transform: translate(-3px, 0); }
+      50% { clip-path: inset(60% 0 25% 0); transform: translate(4px, 0); }
+      75% { clip-path: inset(25% 0 60% 0); transform: translate(-2px, 0); }
+    }
+
+    .hero-title {
+      font-family: 'VT323', monospace;
+      font-size: clamp(6rem, 20vw, 18rem);
+      line-height: 0.9;
+      color: var(--yellow);
+      text-shadow: 0 0 8px var(--yellow), 0 0 20px var(--yellow);
+      position: relative;
+      display: inline-block;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-title::before,
+    .hero-title::after {
+      content: 'ACYD';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-title::before {
+      animation: glitch1 3.5s infinite;
+    }
+
+    .hero-title::after {
+      animation: glitch2 4.2s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .hero-cursor {
+      display: inline-block;
+      width: 0.6em;
+      height: 1em;
+      background: var(--yellow);
+      vertical-align: bottom;
+      animation: blink 1s step-end infinite;
+      box-shadow: 0 0 8px var(--yellow);
+    }
+
+    .hero-tagline {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+      color: var(--yellow);
+      margin: 1.2rem 0 0.5rem;
+      min-height: 1.5em;
+      letter-spacing: 0.1em;
+    }
+
+    .hero-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--grey);
+      margin-top: 0.5rem;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .status-badge {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--yellow);
+      border: 1px solid var(--yellow);
+      padding: 0.3rem 0.7rem;
+      z-index: 2;
+    }
+
+    @keyframes statusPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--yellow);
+      border-radius: 50%;
+      margin-right: 0.4rem;
+      animation: statusPulse 1.5s ease-in-out infinite;
+      box-shadow: 0 0 6px var(--yellow);
+    }
+
+    /* ============================
+       ABOUT
+       ============================ */
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      #about .about-grid { grid-template-columns: 1fr; }
+    }
+
+    .artist-photo {
+      width: 100%;
+      display: block;
+      filter: contrast(1.3) brightness(0.8) sepia(0.3);
+      border: 1px solid var(--yellow);
+      box-shadow: 0 0 12px var(--yellow);
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      background: var(--darker);
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--darker);
+      border: 1px solid var(--yellow);
+      box-shadow: 0 0 12px var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.5rem;
+      color: var(--grey);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+    }
+
+    .photo-placeholder i {
+      font-size: 3rem;
+      color: var(--grey);
+    }
+
+    .genre-tags {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    /* ============================
+       MUSIC
+       ============================ */
+    #music .progress-bar-wrap {
+      border: 1px solid var(--yellow);
+      height: 8px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+      position: relative;
+      background: var(--dark);
+    }
+
+    #music .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--yellow);
+      box-shadow: 0 0 8px var(--yellow);
+      transition: width 1.5s ease;
+    }
+
+    #music .progress-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--grey);
+      margin-bottom: 0.4rem;
+    }
+
+    .track-embed {
+      margin-bottom: 1.5rem;
+    }
+
+    .track-meta {
+      padding: 0 1.2rem 0.6rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--grey);
+    }
+
+    .track-meta strong {
+      color: var(--yellow);
+      font-size: 0.95rem;
+    }
+
+    .track-embed iframe {
+      width: 100%;
+      height: 166px;
+      border: none;
+      display: block;
+    }
+
+    .album-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .album-cards { grid-template-columns: 1fr; }
+    }
+
+    .album-card {
+      background: var(--dark);
+      border: 1px solid var(--yellow);
+    }
+
+    .album-cover {
+      width: 100%;
+      aspect-ratio: 1;
+      background: var(--darker);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--grey);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      border-bottom: 1px solid var(--yellow);
+    }
+
+    .album-cover i { font-size: 3rem; margin-bottom: 0.5rem; display: block; }
+
+    .album-info {
+      padding: 1rem;
+    }
+
+    .album-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .album-info p {
+      font-size: 0.8rem;
+      color: var(--grey);
+      line-height: 1.6;
+      margin: 0.5rem 0 1rem;
+    }
+
+    /* ============================
+       VIDEOS
+       ============================ */
+    #videos .video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      #videos .video-grid { grid-template-columns: 1fr; }
+    }
+
+    .video-card {
+      background: var(--dark);
+      border: 1px solid var(--yellow);
+      transition: box-shadow 0.2s;
+    }
+
+    .video-card:hover {
+      box-shadow: 0 0 12px var(--yellow);
+    }
+
+    .video-card .terminal-titlebar {
+      font-size: 0.75rem;
+    }
+
+    .video-card iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+      display: block;
+    }
+
+    .video-footer {
+      padding: 0.6rem 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .video-footer span {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--grey);
+    }
+
+    /* ============================
+       GALLERY
+       ============================ */
+    #gallery .gallery-grid {
+      columns: 3;
+      column-gap: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      #gallery .gallery-grid { columns: 2; }
+    }
+
+    @media (max-width: 500px) {
+      #gallery .gallery-grid { columns: 1; }
+    }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      border: 1px solid var(--yellow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: crosshair;
+      background: var(--darker);
+    }
+
+    .gallery-item img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 12px var(--yellow);
+    }
+
+    .gallery-placeholder {
+      width: 100%;
+      display: block;
+      border: 1px solid var(--yellow);
+      background: var(--darker);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.4rem;
+      color: var(--grey);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      cursor: crosshair;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .gallery-placeholder:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 12px var(--yellow);
+    }
+
+    .gallery-placeholder i { font-size: 2rem; }
+
+    .gallery-actions {
+      margin-top: 1.5rem;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border: 1px solid var(--yellow);
+      box-shadow: 0 0 24px var(--yellow);
+    }
+
+    .lightbox-controls {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .lightbox-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1rem;
+      color: var(--yellow);
+      background: transparent;
+      border: 1px solid var(--yellow);
+      padding: 0.4rem 1rem;
+      cursor: crosshair;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .lightbox-btn:hover {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-family: 'VT323', monospace;
+      font-size: 2rem;
+      color: var(--yellow);
+      background: none;
+      border: none;
+      cursor: crosshair;
+    }
+
+    /* ============================
+       PROJECTS
+       ============================ */
+    #projects .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 700px) {
+      #projects .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    .project-card {
+      background: var(--dark);
+      border: 1px solid var(--yellow);
+    }
+
+    .project-header {
+      background: var(--darker);
+      border-bottom: 1px solid var(--yellow);
+      padding: 0.6rem 1rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .project-header .project-id {
+      color: var(--yellow);
+    }
+
+    .project-cover {
+      width: 100%;
+      aspect-ratio: 2/1;
+      background: var(--darker);
+      border-bottom: 1px solid var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--grey);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      gap: 0.5rem;
+      flex-direction: column;
+    }
+
+    .project-cover i { font-size: 2rem; }
+
+    .project-body {
+      padding: 1rem;
+    }
+
+    .project-body h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .project-body .collab-meta {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--grey);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-body p {
+      font-size: 0.82rem;
+      color: #aaa;
+      line-height: 1.65;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .project-footer {
+      padding: 0 1rem 1rem;
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* ============================
+       STATS
+       ============================ */
+    #stats .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (max-width: 700px) {
+      #stats .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 380px) {
+      #stats .stats-grid { grid-template-columns: 1fr; }
+    }
+
+    .stat-box {
+      background: var(--dark);
+      border: 1px solid var(--yellow);
+      padding: 1.2rem;
+      text-align: center;
+    }
+
+    .stat-box .stat-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--grey);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-box .stat-value {
+      font-family: 'VT323', monospace;
+      font-size: 2.5rem;
+      color: var(--yellow);
+      text-shadow: 0 0 8px var(--yellow), 0 0 20px var(--yellow);
+    }
+
+    .top-tracks {
+      margin: 0 0 2rem;
+    }
+
+    .top-tracks h4 {
+      font-size: 0.85rem;
+      color: var(--yellow);
+      margin-bottom: 1rem;
+      letter-spacing: 0.1em;
+    }
+
+    .track-row {
+      margin-bottom: 0.8rem;
+    }
+
+    .track-row-label {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.78rem;
+      margin-bottom: 0.3rem;
+      color: #ccc;
+    }
+
+    .track-row-label span { color: var(--grey); }
+
+    .track-bar-bg {
+      height: 6px;
+      background: var(--darker);
+      border: 1px solid var(--grey);
+      position: relative;
+    }
+
+    .track-bar-fill {
+      height: 100%;
+      background: var(--yellow);
+      box-shadow: 0 0 6px var(--yellow);
+    }
+
+    /* ============================
+       SHOWS
+       ============================ */
+    #shows .shows-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      display: block;
+    }
+
+    #shows .shows-table th,
+    #shows .shows-table td {
+      border: 1px solid var(--darker);
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    #shows .shows-table th {
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--yellow);
+      background: var(--darker);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+    }
+
+    #shows .shows-table td {
+      color: #ccc;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    #shows .shows-table tr:hover td {
+      background: rgba(255,230,0,0.05);
+    }
+
+    .shows-archive {
+      margin-top: 2rem;
+    }
+
+    .shows-archive .shows-table td {
+      color: var(--grey);
+      opacity: 0.6;
+    }
+
+    .shows-booking-note {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--grey);
+      margin: 1.2rem 0;
+    }
+
+    /* ============================
+       PRESS
+       ============================ */
+    .press-quotes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 700px) {
+      .press-quotes { grid-template-columns: 1fr; }
+    }
+
+    .press-quote-card {
+      background: var(--dark);
+      border: 1px solid var(--yellow);
+      padding: 1rem;
+    }
+
+    .press-quote-card .log-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--cyan);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.05em;
+    }
+
+    .press-quote-card blockquote {
+      font-size: 0.85rem;
+      color: #aaa;
+      line-height: 1.6;
+      font-style: italic;
+      border-left: 2px solid var(--yellow);
+      padding-left: 0.7rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .press-quote-card cite {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--grey);
+    }
+
+    .presskit-files {
+      margin-top: 0.5rem;
+    }
+
+    .presskit-file-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed rgba(255,230,0,0.2);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .presskit-file-row:last-child { border-bottom: none; }
+
+    .presskit-file-name {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.82rem;
+      color: #ccc;
+    }
+
+    .presskit-file-name i {
+      color: var(--yellow);
+      margin-right: 0.4rem;
+    }
+
+    .tech-rider-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+    }
+
+    .tech-rider-table td {
+      padding: 0.5rem 0.8rem;
+      border-bottom: 1px dashed rgba(255,230,0,0.15);
+      color: #ccc;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .tech-rider-table td:first-child {
+      color: var(--yellow);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      width: 180px;
+    }
+
+    /* ============================
+       CONTACT
+       ============================ */
+    #contact .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 700px) {
+      #contact .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--yellow);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.08em;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: var(--black);
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.9rem;
+      padding: 0.6rem 0.8rem;
+      outline: none;
+      transition: box-shadow 0.15s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      box-shadow: 0 0 8px var(--yellow);
+    }
+
+    .form-group select option {
+      background: var(--black);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-success {
+      display: none;
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--yellow);
+      border: 1px solid var(--yellow);
+      padding: 1.2rem;
+      text-shadow: 0 0 8px var(--yellow);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .social-group-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--grey);
+      margin: 1rem 0 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .social-group-title:first-child { margin-top: 0; }
+
+    .social-link {
+      display: inline-block;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--yellow);
+      text-decoration: none;
+      border: 1px solid var(--yellow);
+      padding: 0.4rem 0.8rem;
+      transition: background 0.15s, color 0.15s;
+      width: fit-content;
+    }
+
+    .social-link::before { content: '>> '; }
+
+    .social-link:hover {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    .contact-direct {
+      margin-top: 0.5rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.82rem;
+      color: #aaa;
+      line-height: 2;
+    }
+
+    .contact-direct strong {
+      color: var(--yellow);
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    /* ============================
+       FOOTER
+       ============================ */
+    #footer {
+      border-top: 1px dashed var(--yellow);
+      padding: 1.5rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--grey);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-top {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--yellow);
+      text-decoration: none;
+      border: 1px solid var(--yellow);
+      padding: 0.3rem 0.7rem;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .footer-top:hover {
+      background: var(--yellow);
+      color: var(--black);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CTOS Watermark -->
+  <div class="ctos-watermark">CTOS v2.4 // ACYD_NODE — ACTIVE</div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" role="dialog" aria-label="Image viewer">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+    <img id="lightboxImg" src="" alt="Gallery image" />
+    <div class="lightbox-controls">
+      <button class="lightbox-btn" id="lightboxPrev">[&lt;&lt;]</button>
+      <button class="lightbox-btn" id="lightboxNext">[&gt;&gt;]</button>
+    </div>
+  </div>
+
+  <!-- ============================
+       NAVIGATION
+       ============================ -->
+  <nav id="navbar" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-brand">ACYD</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" data-section="about">ABOUT</a></li>
+        <li><a href="#music" data-section="music">MUSIC</a></li>
+        <li><a href="#videos" data-section="videos">VIDEOS</a></li>
+        <li><a href="#gallery" data-section="gallery">GALLERY</a></li>
+        <li><a href="#projects" data-section="projects">PROJECTS</a></li>
+        <li><a href="#stats" data-section="stats">STATS</a></li>
+        <li><a href="#shows" data-section="shows">SHOWS</a></li>
+        <li><a href="#press" data-section="press">PRESS</a></li>
+        <li><a href="#contact" data-section="contact">CONTACT</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============================
+       HERO
+       ============================ -->
+  <section id="hero">
+    <div class="status-badge">
+      <span class="status-dot"></span>SYSTEM ONLINE
+    </div>
+    <div class="hero-content container">
+      <h1 class="hero-title">ACYD</h1><span class="hero-cursor"></span>
+      <p class="hero-tagline" id="heroTagline"></p>
+      <p class="hero-meta">INITIALIZED: 13.12.2000 // BUILD: EXPERIMENTAL</p>
+      <div class="hero-buttons">
+        <a href="#music" class="btn">LISTEN NOW</a>
+        <a href="#contact" class="btn">BOOK ACYD</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider container" />
+
+  <!-- ============================
+       ABOUT
+       ============================ -->
+  <section id="about">
+    <div class="container">
+      <p class="section-header">// ARTIST_PROFILE — LOADING BIO...</p>
+      <div class="about-grid">
+        <!-- Photo -->
+        <div>
+          <div class="photo-placeholder">
+            <i class="fa-solid fa-user-secret"></i>
+            <span>PHOTO_[PLACEHOLDER]</span>
+            <span style="font-size:0.65rem;color:var(--grey)">assets/photos/artist.jpg</span>
+          </div>
+          <!-- Swap above div for real image:
+          <img src="assets/photos/artist.jpg" alt="ACYD" class="artist-photo" />
+          -->
+          <div class="genre-tags">
+            <span class="tag">Experimental Rap</span>
+            <span class="tag">Dark Phonk</span>
+            <span class="tag">Electronic Avantgarde</span>
+            <span class="tag">Alternative Punk</span>
+            <span class="tag">Psychedelic Hip-Hop</span>
+            <span class="tag">Anti-System</span>
+          </div>
+        </div>
+
+        <!-- Bio -->
+        <div>
+          <div class="terminal-window">
+            <div class="terminal-titlebar">root@acyd:~$ cat BIO.exe</div>
+            <div class="terminal-body">
+              <p><span class="prompt">></span> ACYD is a Slovak multi-genre experimental rapper, sound engineer, and self-taught producer based in Brno, Czech Republic. Known for his anarchistic, anti-establishment and system-provoking lyrics blended with boundary-pushing sound — ranging from old-school phonk, through electronic avant-garde, to alternative punk. Born 13.12.2000, emerging into the new millennium as the epitome of the ACAB acronym. His lyrics focus on populist, oppressive, neo-fascist and anti-democratic tendencies in Slovak political and social reality.</p>
+            </div>
+          </div>
+
+          <div class="terminal-window">
+            <div class="terminal-titlebar">root@acyd:~$ cat BIO_SK.txt</div>
+            <div class="terminal-body">
+              <p><span class="prompt">></span> ACYD nie je len raper, je to diagnóza slovenskej scény usadená v Brne. Multižánrový experimentátor, zvukový inžinier a producent, ktorý kašle na pravidlá. Jeho zvuk je špinavý mix old-school phonku, elektronickej avantgardy a punkovej drzosti.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider container" />
+
+  <!-- ============================
+       MUSIC
+       ============================ -->
+  <section id="music">
+    <div class="container">
+      <p class="section-header">// LOADING TRACKS...</p>
+      <p class="progress-label">AUDIO_STREAM_INIT: <span id="progressPct">0</span>%</p>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="musicProgressBar"></div>
+      </div>
+
+      <!-- Track 1 -->
+      <div class="terminal-window track-embed">
+        <div class="terminal-titlebar">TRACK_FILE: 001.wav</div>
+        <div class="track-meta">
+          <strong>[TRACK TITLE]</strong> &nbsp;|&nbsp; SUSHI BIZNIS TECHNO &nbsp;|&nbsp; 2023
+        </div>
+        <!-- EDIT: Replace src with real SoundCloud embed URL -->
+        <iframe src="#" title="SoundCloud — SUSHI BIZNIS TECHNO track" scrolling="no" allow="autoplay"></iframe>
+        <div class="terminal-body" style="padding-top:0.3rem;font-size:0.75rem;color:var(--grey)">
+          // EDIT: Replace iframe src with SoundCloud embed URL
+        </div>
+      </div>
+
+      <!-- Track 2 -->
+      <div class="terminal-window track-embed">
+        <div class="terminal-titlebar">TRACK_FILE: 002.wav</div>
+        <div class="track-meta">
+          <strong>[TRACK TITLE]</strong> &nbsp;|&nbsp; SHITTIN' BRIXX &nbsp;|&nbsp; 2024
+        </div>
+        <!-- EDIT: Replace src with real SoundCloud embed URL -->
+        <iframe src="#" title="SoundCloud — SHITTIN BRIXX track" scrolling="no" allow="autoplay"></iframe>
+        <div class="terminal-body" style="padding-top:0.3rem;font-size:0.75rem;color:var(--grey)">
+          // EDIT: Replace iframe src with SoundCloud embed URL
+        </div>
+      </div>
+
+      <!-- Track 3 -->
+      <div class="terminal-window track-embed">
+        <div class="terminal-titlebar">TRACK_FILE: 003.wav</div>
+        <div class="track-meta">
+          <strong>[TRACK TITLE]</strong> &nbsp;|&nbsp; SINGLE &nbsp;|&nbsp; [DATE]
+        </div>
+        <!-- EDIT: Replace src with real SoundCloud embed URL -->
+        <iframe src="#" title="SoundCloud — Single" scrolling="no" allow="autoplay"></iframe>
+        <div class="terminal-body" style="padding-top:0.3rem;font-size:0.75rem;color:var(--grey)">
+          // EDIT: Replace iframe src with SoundCloud embed URL
+        </div>
+      </div>
+
+      <!-- Album Cards -->
+      <div class="album-cards">
+        <div class="album-card">
+          <div class="album-cover">
+            <i class="fa-solid fa-compact-disc"></i>
+            <span>COVER_[PLACEHOLDER]</span>
+          </div>
+          <div class="album-info">
+            <h3>SUSHI BIZNIS TECHNO</h3>
+            <p style="color:var(--grey);font-size:0.75rem">2023 &nbsp;|&nbsp; Solo Album</p>
+            <p>Debut solo album — a bold exploration of psychedelic experiences, the digital realm, and the struggle with schizophrenic tendencies.</p>
+            <a href="#" class="btn">STREAM</a><!-- [PLACEHOLDER] Replace href with streaming link -->
+          </div>
+        </div>
+        <div class="album-card">
+          <div class="album-cover">
+            <i class="fa-solid fa-compact-disc"></i>
+            <span>COVER_[PLACEHOLDER]</span>
+          </div>
+          <div class="album-info">
+            <h3>SHITTIN' BRIXX</h3>
+            <p style="color:var(--grey);font-size:0.75rem">2024 &nbsp;|&nbsp; Collab Album w/ Fredryk</p>
+            <p>Joint project accentuating current problems in political and systemic contexts. Louder, more global, more provocative.</p>
+            <a href="#" class="btn">STREAM</a><!-- [PLACEHOLDER] Replace href with streaming link -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider container" />
+
+  <!-- ============================
+       VIDEOS
+       ============================ -->
+  <section id="videos">
+    <div class="container">
+      <p class="section-header">// VIDEO_FEED — DECRYPTING...</p>
+      <div class="video-grid">
+
+        <!-- Video 1 -->
+        <div class="video-card">
+          <div class="terminal-titlebar">[MUSIC VIDEO TITLE]</div>
+          <!-- EDIT: Replace VIDEO_ID with real YouTube video ID -->
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Music Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="video-footer">
+            <span class="tag">[MUSIC VIDEO]</span>
+          </div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-card">
+          <div class="terminal-titlebar">[LIVE GIG TITLE]</div>
+          <!-- EDIT: Replace VIDEO_ID with real YouTube video ID -->
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Live Performance" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="video-footer">
+            <span class="tag">[LIVE PERFORMANCE]</span>
+          </div>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="video-card">
+          <div class="terminal-titlebar">[STUDIO SESSION]</div>
+          <!-- EDIT: Replace VIDEO_ID with real YouTube video ID -->
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Behind The Scenes" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="video-footer">
+            <span class="tag">[STUDIO SESSION]</span>
+          </div>
+        </div>
+
+        <!-- Video 4 -->
+        <div class="video-card">
+          <div class="terminal-titlebar">[MUSIC VIDEO TITLE 2]</div>
+          <!-- EDIT: Replace VIDEO_ID with real YouTube video ID -->
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Music Video 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="video-footer">
+            <span class="tag">[MUSIC VIDEO]</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider container" />
+
+  <!-- ============================
+       GALLERY
+       ============================ -->
+  <section id="gallery">
+    <div class="container">
+      <p class="section-header">// PHOTO_ARCHIVE — LOADING...</p>
+      <div class="gallery-grid" id="galleryGrid">
+
+        <div class="gallery-item">
+          <div class="gallery-placeholder" style="height:240px" data-src="assets/photos/photo1.jpg" data-index="0" role="button" tabindex="0" aria-label="Open photo 1">
+            <i class="fa-solid fa-image"></i>
+            <span>photo1.jpg</span>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-placeholder" style="height:320px" data-src="assets/photos/photo2.jpg" data-index="1" role="button" tabindex="0" aria-label="Open photo 2">
+            <i class="fa-solid fa-image"></i>
+            <span>photo2.jpg</span>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-placeholder" style="height:200px" data-src="assets/photos/photo3.jpg" data-index="2" role="button" tabindex="0" aria-label="Open photo 3">
+            <i class="fa-solid fa-image"></i>
+            <span>photo3.jpg</span>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-placeholder" style="height:280px" data-src="assets/photos/photo4.jpg" data-index="3" role="button" tabindex="0" aria-label="Open photo 4">
+            <i class="fa-solid fa-image"></i>
+            <span>photo4.jpg</span>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-placeholder" style="height:260px" data-src="assets/photos/photo5.jpg" data-index="4" role="button" tabindex="0" aria-label="Open photo 5">
+            <i class="fa-solid fa-image"></i>
+            <span>photo5.jpg</span>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-placeholder" style="height:300px" data-src="assets/photos/photo6.jpg" data-index="5" role="button" tabindex="0" aria-label="Open photo 6">
+            <i class="fa-solid fa-image"></i>
+            <span>photo6.jpg</span>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-placeholder" style="height:220px" data-src="assets/photos/photo7.jpg" data-index="6" role="button" tabindex="0" aria-label="Open photo 7">
+            <i class="fa-solid fa-image"></i>
+            <span>photo7.jpg</span>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-placeholder" style="height:340px" data-src="assets/photos/photo8.jpg" data-index="7" role="button" tabindex="0" aria-label="Open photo 8">
+            <i class="fa-solid fa-image"></i>
+            <span>photo8.jpg</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="gallery-actions" style="margin-top:1.5rem">
+        <a href="assets/press-photos.zip" class="btn" download>DOWNLOAD PRESS PHOTOS</a><!-- [PLACEHOLDER] Replace with real zip link -->
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider container" />
+
+  <!-- ============================
+       PROJECTS
+       ============================ -->
+  <section id="projects">
+    <div class="container">
+      <p class="section-header">// PROJECT_LOG — ENTRIES FOUND: 6</p>
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-id">PROJECT_ID: SUSHI_BIZNIS_TECHNO</span>
+            <span class="tag">[ALBUM]</span>
+          </div>
+          <div class="project-cover">
+            <i class="fa-solid fa-compact-disc"></i>
+            <span>COVER_[PLACEHOLDER]</span>
+          </div>
+          <div class="project-body">
+            <h3>SUSHI BIZNIS TECHNO</h3>
+            <p class="collab-meta">2023 &nbsp;|&nbsp; Solo Album</p>
+            <p>Debut solo album — a bold exploration of psychedelic experiences, the digital realm, and the struggle with schizophrenic tendencies.</p>
+          </div>
+          <div class="project-footer">
+            <span class="tag green">[RELEASED]</span>
+            <a href="#" class="btn">STREAM</a><!-- [PLACEHOLDER] -->
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-id">PROJECT_ID: SHITTIN_BRIXX</span>
+            <span class="tag">[COLLAB]</span>
+          </div>
+          <div class="project-cover">
+            <i class="fa-solid fa-compact-disc"></i>
+            <span>COVER_[PLACEHOLDER]</span>
+          </div>
+          <div class="project-body">
+            <h3>SHITTIN' BRIXX</h3>
+            <p class="collab-meta">2024 &nbsp;|&nbsp; Collab Album w/ Fredryk</p>
+            <p>Joint project accentuating current problems in political and systemic contexts. Louder, more global, more provocative.</p>
+          </div>
+          <div class="project-footer">
+            <span class="tag green">[RELEASED]</span>
+            <a href="#" class="btn">STREAM</a><!-- [PLACEHOLDER] -->
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-id">PROJECT_ID: COLLAB_PREZIDENT_LOURAJDER</span>
+            <span class="tag">[COLLAB]</span>
+          </div>
+          <div class="project-cover">
+            <i class="fa-solid fa-music"></i>
+            <span>COVER_[PLACEHOLDER]</span>
+          </div>
+          <div class="project-body">
+            <h3>PREZIDENT LOURAJDER</h3>
+            <p class="collab-meta">[YEAR] &nbsp;|&nbsp; Feature</p>
+            <p>[PLACEHOLDER — add project description here]</p>
+          </div>
+          <div class="project-footer">
+            <span class="tag green">[RELEASED]</span>
+            <a href="#" class="btn">VIEW PROJECT</a><!-- [PLACEHOLDER] -->
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-id">PROJECT_ID: COLLAB_JEREMY_DAVIS</span>
+            <span class="tag">[COLLAB]</span>
+          </div>
+          <div class="project-cover">
+            <i class="fa-solid fa-music"></i>
+            <span>COVER_[PLACEHOLDER]</span>
+          </div>
+          <div class="project-body">
+            <h3>JEREMY DAVIS</h3>
+            <p class="collab-meta">[YEAR] &nbsp;|&nbsp; Feature &nbsp;|&nbsp; Chicago</p>
+            <p>[PLACEHOLDER — add project description here]</p>
+          </div>
+          <div class="project-footer">
+            <span class="tag green">[RELEASED]</span>
+            <a href="#" class="btn">VIEW PROJECT</a><!-- [PLACEHOLDER] -->
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-id">PROJECT_ID: COLLAB_SHXRTY</span>
+            <span class="tag">[COLLAB]</span>
+          </div>
+          <div class="project-cover">
+            <i class="fa-solid fa-music"></i>
+            <span>COVER_[PLACEHOLDER]</span>
+          </div>
+          <div class="project-body">
+            <h3>SHXRTY</h3>
+            <p class="collab-meta">[YEAR] &nbsp;|&nbsp; Feature &nbsp;|&nbsp; Brno</p>
+            <p>[PLACEHOLDER — add project description here]</p>
+          </div>
+          <div class="project-footer">
+            <span class="tag green">[RELEASED]</span>
+            <a href="#" class="btn">VIEW PROJECT</a><!-- [PLACEHOLDER] -->
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-id">PROJECT_ID: [NEXT_PROJECT]</span>
+            <span class="tag">[TYPE]</span>
+          </div>
+          <div class="project-cover">
+            <i class="fa-solid fa-code-branch"></i>
+            <span>TBA_[PLACEHOLDER]</span>
+          </div>
+          <div class="project-body">
+            <h3>[NEXT PROJECT]</h3>
+            <p class="collab-meta">2025 &nbsp;|&nbsp; [TYPE]</p>
+            <p>[PLACEHOLDER — details coming soon]</p>
+          </div>
+          <div class="project-footer">
+            <span class="tag grey">[IN DEVELOPMENT]</span>
+            <a href="#contact" class="btn">CONTACT</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider container" />
+
+  <!-- ============================
+       STATS
+       ============================ -->
+  <section id="stats">
+    <div class="container">
+      <p class="section-header">// LISTENING_DATA — LIVE FEED</p>
+      <!-- // EDIT: Replace with real Spotify/SoundCloud embed stats or manual data -->
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-label">MONTHLY LISTENERS</div>
+          <div class="stat-value" data-target="[NUMBER]" data-count="0">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">TOTAL STREAMS</div>
+          <div class="stat-value" data-target="[NUMBER]" data-count="0">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">COUNTRIES REACHED</div>
+          <div class="stat-value" data-target="[NUMBER]" data-count="0">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">RELEASES</div>
+          <div class="stat-value" data-target="2" data-count="0">0</div>
+        </div>
+      </div>
+
+      <div class="top-tracks">
+        <h4>// TOP TRACKS RIGHT NOW</h4>
+        <!-- [PLACEHOLDER] Edit track names and bar widths (percentages) -->
+        <div class="track-row">
+          <div class="track-row-label">
+            [TRACK NAME 1] <span>85%</span>
+          </div>
+          <div class="track-bar-bg"><div class="track-bar-fill" style="width:85%"></div></div>
+        </div>
+        <div class="track-row">
+          <div class="track-row-label">
+            [TRACK NAME 2] <span>62%</span>
+          </div>
+          <div class="track-bar-bg"><div class="track-bar-fill" style="width:62%"></div></div>
+        </div>
+        <div class="track-row">
+          <div class="track-row-label">
+            [TRACK NAME 3] <span>44%</span>
+          </div>
+          <div class="track-bar-bg"><div class="track-bar-fill" style="width:44%"></div></div>
+        </div>
+      </div>
+
+      <a href="#" class="btn">FOLLOW ON SPOTIFY</a><!-- [PLACEHOLDER] Replace href with real Spotify artist URL -->
+    </div>
+  </section>
+
+  <hr class="section-divider container" />
+
+  <!-- ============================
+       SHOWS
+       ============================ -->
+  <section id="shows">
+    <div class="container">
+      <p class="section-header">// SHOW_SCHEDULE — QUERYING DATABASE...</p>
+
+      <table class="shows-table" aria-label="Upcoming shows">
+        <thead>
+          <tr>
+            <th>DATE</th>
+            <th>VENUE</th>
+            <th>CITY</th>
+            <th>TICKET</th>
+            <th>STATUS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>[DATE]</td>
+            <td>[VENUE NAME]</td>
+            <td>[CITY]</td>
+            <td><a href="#" class="btn" style="font-size:0.75rem;padding:0.3rem 0.6rem">TICKETS</a></td><!-- [PLACEHOLDER] -->
+            <td><span class="tag">[CONFIRMED]</span></td>
+          </tr>
+          <tr>
+            <td>[DATE]</td>
+            <td>[VENUE NAME]</td>
+            <td>[CITY]</td>
+            <td><a href="#" class="btn" style="font-size:0.75rem;padding:0.3rem 0.6rem">TICKETS</a></td><!-- [PLACEHOLDER] -->
+            <td><span class="tag">[CONFIRMED]</span></td>
+          </tr>
+          <tr>
+            <td>[DATE]</td>
+            <td>[VENUE NAME]</td>
+            <td>[CITY]</td>
+            <td>—</td>
+            <td><span class="tag grey">[TBA]</span></td>
+          </tr>
+          <tr>
+            <td>[DATE]</td>
+            <td>[VENUE NAME]</td>
+            <td>[CITY]</td>
+            <td>—</td>
+            <td><span class="tag grey">[TBA]</span></td>
+          </tr>
+          <tr>
+            <td>[DATE]</td>
+            <td>[VENUE NAME]</td>
+            <td>[CITY]</td>
+            <td><a href="#" class="btn" style="font-size:0.75rem;padding:0.3rem 0.6rem">TICKETS</a></td><!-- [PLACEHOLDER] -->
+            <td><span class="tag red">[SOLD OUT]</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="shows-booking-note">// BOOKING INQUIRY — <a href="#contact" style="color:var(--yellow)">scroll to contact</a></p>
+
+      <!-- Past shows -->
+      <div class="shows-archive">
+        <p class="section-header" style="margin-bottom:1rem">// ARCHIVE</p>
+        <table class="shows-table" aria-label="Past shows">
+          <thead>
+            <tr>
+              <th>DATE</th>
+              <th>VENUE</th>
+              <th>CITY</th>
+              <th>TICKET</th>
+              <th>STATUS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>[PAST DATE]</td>
+              <td>[PAST VENUE]</td>
+              <td>[CITY]</td>
+              <td>—</td>
+              <td><span class="tag grey">[PAST]</span></td>
+            </tr>
+            <tr>
+              <td>[PAST DATE]</td>
+              <td>[PAST VENUE]</td>
+              <td>[CITY]</td>
+              <td>—</td>
+              <td><span class="tag grey">[PAST]</span></td>
+            </tr>
+            <tr>
+              <td>[PAST DATE]</td>
+              <td>[PAST VENUE]</td>
+              <td>[CITY]</td>
+              <td>—</td>
+              <td><span class="tag grey">[PAST]</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider container" />
+
+  <!-- ============================
+       PRESS
+       ============================ -->
+  <section id="press">
+    <div class="container">
+      <p class="section-header">// PRESS_FILES — CLASSIFIED</p>
+
+      <!-- Press Quotes -->
+      <div class="press-quotes">
+        <div class="press-quote-card">
+          <div class="log-tag">[INFO] PRESS_ENTRY_001</div>
+          <blockquote>"[PLACEHOLDER — Insert press quote here]"</blockquote>
+          <cite>— [SOURCE / PUBLICATION], [YEAR]</cite>
+        </div>
+        <div class="press-quote-card">
+          <div class="log-tag">[INFO] PRESS_ENTRY_002</div>
+          <blockquote>"[PLACEHOLDER — Insert press quote here]"</blockquote>
+          <cite>— [SOURCE / PUBLICATION], [YEAR]</cite>
+        </div>
+        <div class="press-quote-card">
+          <div class="log-tag">[INFO] PRESS_ENTRY_003</div>
+          <blockquote>"[PLACEHOLDER — Insert press quote here]"</blockquote>
+          <cite>— [SOURCE / PUBLICATION], [YEAR]</cite>
+        </div>
+      </div>
+
+      <!-- Press Kit Download -->
+      <div class="terminal-window" style="margin-bottom:1.5rem">
+        <div class="terminal-titlebar">root@acyd:~$ ls -la ./presskit/</div>
+        <div class="terminal-body presskit-files">
+          <!-- // EDIT: Replace href with real file links -->
+          <div class="presskit-file-row">
+            <span class="presskit-file-name"><i class="fa-regular fa-file-pdf"></i>EPK_ACYD_2025.pdf</span>
+            <a href="assets/presskit/EPK_ACYD_2025.pdf" class="btn" download>DOWNLOAD</a><!-- [PLACEHOLDER] -->
+          </div>
+          <div class="presskit-file-row">
+            <span class="presskit-file-name"><i class="fa-regular fa-file-lines"></i>BIO_EN.txt</span>
+            <a href="assets/presskit/BIO_EN.txt" class="btn" download>DOWNLOAD</a><!-- [PLACEHOLDER] -->
+          </div>
+          <div class="presskit-file-row">
+            <span class="presskit-file-name"><i class="fa-regular fa-file-lines"></i>BIO_SK.txt</span>
+            <a href="assets/presskit/BIO_SK.txt" class="btn" download>DOWNLOAD</a><!-- [PLACEHOLDER] -->
+          </div>
+          <div class="presskit-file-row">
+            <span class="presskit-file-name"><i class="fa-regular fa-file-zipper"></i>PRESSPHOTO_HI-RES.zip</span>
+            <a href="assets/presskit/PRESSPHOTO_HI-RES.zip" class="btn" download>DOWNLOAD</a><!-- [PLACEHOLDER] -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech Rider -->
+      <div class="terminal-window">
+        <div class="terminal-titlebar">root@acyd:~$ cat TECH_RIDER.txt</div>
+        <div class="terminal-body">
+          <table class="tech-rider-table">
+            <tbody>
+              <tr><td>STAGE:</td><td>[DIMENSIONS]</td></tr>
+              <tr><td>PA SYSTEM:</td><td>[REQUIREMENTS]</td></tr>
+              <tr><td>MONITORS:</td><td>[NUMBER AND TYPE]</td></tr>
+              <tr><td>MICROPHONES:</td><td>[LIST]</td></tr>
+              <tr><td>DI BOXES:</td><td>[NUMBER]</td></tr>
+              <tr><td>BACKLINE:</td><td>[REQUIREMENTS]</td></tr>
+              <tr><td>SOUNDCHECK:</td><td>[DURATION NEEDED]</td></tr>
+              <tr><td>ADDITIONAL NOTES:</td><td>[PLACEHOLDER]</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:1.2rem">
+            <a href="assets/tech-rider.pdf" class="btn" download>DOWNLOAD TECH RIDER</a><!-- [PLACEHOLDER] Replace href with real tech rider PDF -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider container" />
+
+  <!-- ============================
+       CONTACT
+       ============================ -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-header">// OPEN_CHANNEL — ESTABLISHING CONNECTION...</p>
+      <div class="contact-grid">
+
+        <!-- Booking Form -->
+        <div>
+          <div class="terminal-window">
+            <div class="terminal-titlebar">root@acyd:~$ ./open_channel.sh</div>
+            <div class="terminal-body">
+              <!-- // EDIT: Connect to Formspree or Netlify Forms for real submissions -->
+              <!-- Change form action to https://formspree.io/f/YOUR_ID -->
+              <form id="contactForm" action="#" method="POST" novalidate>
+                <div class="form-group">
+                  <label for="inputName">ENTER NAME:</label>
+                  <input type="text" id="inputName" name="name" required autocomplete="name" placeholder="[YOUR_NAME]" />
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail">ENTER EMAIL:</label>
+                  <input type="email" id="inputEmail" name="email" required autocomplete="email" placeholder="[YOUR_EMAIL]" />
+                </div>
+                <div class="form-group">
+                  <label for="inputType">ENTER TYPE:</label>
+                  <select id="inputType" name="type" required>
+                    <option value="">-- SELECT --</option>
+                    <option value="BOOKING">BOOKING</option>
+                    <option value="PRESS">PRESS</option>
+                    <option value="COLLAB">COLLAB</option>
+                    <option value="OTHER">OTHER</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="inputMessage">ENTER MESSAGE:</label>
+                  <textarea id="inputMessage" name="message" required placeholder="[YOUR_MESSAGE]"></textarea>
+                </div>
+                <button type="submit" class="btn">SEND TRANSMISSION</button>
+              </form>
+              <div class="form-success" id="formSuccess">
+                // TRANSMISSION RECEIVED.<br />
+                // ACYD WILL RESPOND WITHIN 48H.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Links -->
+        <div>
+          <div class="terminal-window">
+            <div class="terminal-titlebar">root@acyd:~$ cat SOCIAL_NODES.txt</div>
+            <div class="terminal-body">
+              <div class="social-links">
+                <p class="social-group-title">// SOCIAL_NODES:</p>
+                <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">INSTAGRAM</a><!-- [PLACEHOLDER] Replace href -->
+                <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">SOUNDCLOUD</a><!-- [PLACEHOLDER] Replace href -->
+                <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">SPOTIFY</a><!-- [PLACEHOLDER] Replace href -->
+                <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">YOUTUBE</a><!-- [PLACEHOLDER] Replace href -->
+                <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">BANDCAMP</a><!-- [PLACEHOLDER] Replace href -->
+
+                <p class="social-group-title">// DIRECT CONTACT:</p>
+                <div class="contact-direct">
+                  <strong>booking:</strong> <a href="mailto:[BOOKING EMAIL]" style="color:#aaa">[BOOKING EMAIL]</a><br /><!-- [PLACEHOLDER] -->
+                  <strong>management:</strong> <a href="mailto:[MANAGEMENT EMAIL]" style="color:#aaa">[MANAGEMENT EMAIL]</a><!-- [PLACEHOLDER] -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       FOOTER
+       ============================ -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <span class="footer-copy">ACYD © 2025 // ALL RIGHTS RESERVED // BRNO, CZ</span>
+      <a href="#hero" class="footer-top">^ TOP</a>
+    </div>
+  </footer>
+
+  <!-- ============================
+       JAVASCRIPT
+       ============================ -->
+  <script>
+    'use strict';
+
+    /* ============================
+       1. SMOOTH SCROLL (all anchors)
+       ============================ */
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        var targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        var target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+          // Close mobile nav if open
+          var navLinks = document.getElementById('navLinks');
+          if (navLinks.classList.contains('open')) {
+            navLinks.classList.remove('open');
+            document.getElementById('navHamburger').setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+    });
+
+    /* ============================
+       2. MOBILE NAV TOGGLE
+       ============================ */
+    document.getElementById('navHamburger').addEventListener('click', function() {
+      var navLinks = document.getElementById('navLinks');
+      var isOpen = navLinks.classList.toggle('open');
+      this.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    /* ============================
+       3. HERO TYPEWRITER EFFECT
+       ============================ */
+    (function() {
+      var text = 'ANARCHIST. PRODUCER. SYSTEM ERROR. // BRNO, CZ';
+      var el = document.getElementById('heroTagline');
+      var i = 0;
+      var delay = 60;
+
+      function typeNext() {
+        if (i <= text.length) {
+          el.textContent = text.slice(0, i);
+          i++;
+          setTimeout(typeNext, delay);
+        }
+      }
+
+      // Start after a brief delay
+      setTimeout(typeNext, 800);
+    }());
+
+    /* ============================
+       4. INTERSECTIONOBSERVER — NAV HIGHLIGHTING
+       ============================ */
+    (function() {
+      var sections = document.querySelectorAll('section[id]');
+      var navLinks = document.querySelectorAll('.nav-links a[data-section]');
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var id = entry.target.id;
+            navLinks.forEach(function(link) {
+              if (link.getAttribute('data-section') === id) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+      sections.forEach(function(section) { observer.observe(section); });
+    }());
+
+    /* ============================
+       5. MUSIC SECTION PROGRESS BAR
+       ============================ */
+    (function() {
+      var musicSection = document.getElementById('music');
+      var bar = document.getElementById('musicProgressBar');
+      var pct = document.getElementById('progressPct');
+      var triggered = false;
+
+      var observer = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting && !triggered) {
+          triggered = true;
+          var start = null;
+          var duration = 1500;
+
+          function animate(timestamp) {
+            if (!start) start = timestamp;
+            var progress = Math.min((timestamp - start) / duration, 1);
+            var val = Math.round(progress * 100);
+            bar.style.width = val + '%';
+            pct.textContent = val;
+            if (progress < 1) requestAnimationFrame(animate);
+          }
+
+          requestAnimationFrame(animate);
+        }
+      }, { threshold: 0.2 });
+
+      observer.observe(musicSection);
+    }());
+
+    /* ============================
+       6. STAT COUNTERS
+       ============================ */
+    (function() {
+      var statsSection = document.getElementById('stats');
+      var counters = statsSection.querySelectorAll('.stat-value[data-target]');
+      var triggered = false;
+
+      var observer = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting && !triggered) {
+          triggered = true;
+          counters.forEach(function(counter) {
+            var target = counter.getAttribute('data-target');
+            // If target is a number, animate. Otherwise display as-is.
+            var numTarget = parseInt(target, 10);
+            if (isNaN(numTarget)) {
+              counter.textContent = target;
+              return;
+            }
+            var start = 0;
+            var duration = 1800;
+            var startTime = null;
+
+            function step(timestamp) {
+              if (!startTime) startTime = timestamp;
+              var progress = Math.min((timestamp - startTime) / duration, 1);
+              var eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+              var current = Math.round(eased * numTarget);
+              counter.textContent = current.toLocaleString();
+              if (progress < 1) requestAnimationFrame(step);
+            }
+
+            requestAnimationFrame(step);
+          });
+        }
+      }, { threshold: 0.3 });
+
+      observer.observe(statsSection);
+    }());
+
+    /* ============================
+       7. GALLERY LIGHTBOX
+       ============================ */
+    (function() {
+      var lightbox = document.getElementById('lightbox');
+      var lightboxImg = document.getElementById('lightboxImg');
+      var closeBtn = document.getElementById('lightboxClose');
+      var prevBtn = document.getElementById('lightboxPrev');
+      var nextBtn = document.getElementById('lightboxNext');
+      var items = [];
+      var currentIndex = 0;
+
+      // Gather gallery items
+      document.querySelectorAll('.gallery-placeholder[data-index]').forEach(function(el) {
+        items.push(el.getAttribute('data-src'));
+      });
+
+      function openLightbox(index) {
+        currentIndex = index;
+        lightboxImg.src = items[currentIndex];
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+        lightboxImg.src = '';
+      }
+
+      function showPrev() {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        lightboxImg.src = items[currentIndex];
+      }
+
+      function showNext() {
+        currentIndex = (currentIndex + 1) % items.length;
+        lightboxImg.src = items[currentIndex];
+      }
+
+      document.querySelectorAll('.gallery-placeholder[data-index]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          openLightbox(parseInt(this.getAttribute('data-index'), 10));
+        });
+        el.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openLightbox(parseInt(this.getAttribute('data-index'), 10));
+          }
+        });
+      });
+
+      closeBtn.addEventListener('click', closeLightbox);
+      prevBtn.addEventListener('click', showPrev);
+      nextBtn.addEventListener('click', showNext);
+
+      // Click overlay to close
+      lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      // ESC key to close, arrow keys for nav
+      document.addEventListener('keydown', function(e) {
+        if (!lightbox.classList.contains('open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+      });
+    }());
+
+    /* ============================
+       8. CONTACT FORM HANDLER
+       ============================ */
+    (function() {
+      var form = document.getElementById('contactForm');
+      var success = document.getElementById('formSuccess');
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Basic validation
+        var name = form.querySelector('[name="name"]').value.trim();
+        var email = form.querySelector('[name="email"]').value.trim();
+        var type = form.querySelector('[name="type"]').value;
+        var message = form.querySelector('[name="message"]').value.trim();
+
+        if (!name || !email || !type || !message) {
+          alert('// ERROR: ALL FIELDS REQUIRED.');
+          return;
+        }
+
+        // Hide form, show success
+        form.style.display = 'none';
+        success.style.display = 'block';
+      });
+    }());
+  </script>
+</body>
+</html>
