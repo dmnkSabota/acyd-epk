@@ -1882,9 +1882,9 @@
           <div class="terminal-window">
             <div class="terminal-titlebar">root@acyd:~$ ./open_channel.sh</div>
             <div class="terminal-body">
-              <!-- // EDIT: Connect to Formspree or Netlify Forms for real submissions -->
-              <!-- Change form action to https://formspree.io/f/YOUR_ID -->
-              <form id="contactForm" action="#" method="POST" novalidate>
+              <form id="contactForm" action="https://formspree.io/f/YOUR_ID" method="POST">
+                <input type="hidden" name="_next" value="https://acyd-epk.vercel.app/#contact" />
+                <input type="hidden" name="_subject" value="New contact from ACYD EPK" />
                 <div class="form-group">
                   <label for="inputName">ENTER NAME:</label>
                   <input type="text" id="inputName" name="name" required autocomplete="name" placeholder="[YOUR_NAME]" />
@@ -1895,7 +1895,7 @@
                 </div>
                 <div class="form-group">
                   <label for="inputType">ENTER TYPE:</label>
-                  <select id="inputType" name="type" required>
+                  <select id="inputType" name="subject" required>
                     <option value="">-- SELECT --</option>
                     <option value="BOOKING">BOOKING</option>
                     <option value="PRESS">PRESS</option>
@@ -1924,16 +1924,16 @@
             <div class="terminal-body">
               <div class="social-links">
                 <p class="social-group-title">// SOCIAL_NODES:</p>
-                <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">INSTAGRAM</a><!-- [PLACEHOLDER] Replace href -->
-                <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">SOUNDCLOUD</a><!-- [PLACEHOLDER] Replace href -->
-                <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">SPOTIFY</a><!-- [PLACEHOLDER] Replace href -->
-                <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">YOUTUBE</a><!-- [PLACEHOLDER] Replace href -->
-                <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">BANDCAMP</a><!-- [PLACEHOLDER] Replace href -->
+                <a href="https://www.instagram.com/i_did_acyd/" class="social-link" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+                <a href="https://soundcloud.com/i_did_acyd" class="social-link" target="_blank" rel="noopener noreferrer">SOUNDCLOUD</a>
+                <a href="https://open.spotify.com/artist/2Vc0C0MydgeEa9hDR2id3D?si=ukzspxUASWeiNZxh5jGZhg" class="social-link" target="_blank" rel="noopener noreferrer">SPOTIFY</a>
+                <a href="https://www.youtube.com/@IDIDACYD" class="social-link" target="_blank" rel="noopener noreferrer">YOUTUBE</a>
+                <a href="https://ididacyd.bandcamp.com/" class="social-link" target="_blank" rel="noopener noreferrer">BANDCAMP</a>
 
                 <p class="social-group-title">// DIRECT CONTACT:</p>
                 <div class="contact-direct">
-                  <strong>booking:</strong> <a href="mailto:[BOOKING EMAIL]" style="color:#aaa">[BOOKING EMAIL]</a><br /><!-- [PLACEHOLDER] -->
-                  <strong>management:</strong> <a href="mailto:[MANAGEMENT EMAIL]" style="color:#aaa">[MANAGEMENT EMAIL]</a><!-- [PLACEHOLDER] -->
+                  <strong>booking:</strong> <a href="mailto:ididacyd.booking@gmail.com" style="color:#aaa">ididacyd.booking@gmail.com</a><br />
+                  <strong>management:</strong> <a href="mailto:ididacyd.official@gmail.com" style="color:#aaa">ididacyd.official@gmail.com</a>
                 </div>
               </div>
             </div>
@@ -2154,17 +2154,29 @@
         // Basic validation
         var name = form.querySelector('[name="name"]').value.trim();
         var email = form.querySelector('[name="email"]').value.trim();
-        var type = form.querySelector('[name="type"]').value;
+        var subject = form.querySelector('[name="subject"]').value;
         var message = form.querySelector('[name="message"]').value.trim();
 
-        if (!name || !email || !type || !message) {
+        if (!name || !email || !subject || !message) {
           alert('// ERROR: ALL FIELDS REQUIRED.');
           return;
         }
 
-        // Hide form, show success
-        form.style.display = 'none';
-        success.style.display = 'block';
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        }).then(function(resp) {
+          if (resp.ok) {
+            // Hide form, show success
+            form.style.display = 'none';
+            success.style.display = 'block';
+          } else {
+            alert('// ERROR: TRANSMISSION FAILED. PLEASE TRY AGAIN.');
+          }
+        }).catch(function() {
+          alert('// ERROR: TRANSMISSION FAILED. PLEASE TRY AGAIN.');
+        });
       });
     }());
     /* ============================
