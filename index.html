@@ -713,6 +713,18 @@
       margin-bottom: 1.5rem;
     }
 
+    @media (max-width: 768px) {
+      .track-embed,
+      .terminal-window {
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+      .track-embed iframe {
+        width: 100% !important;
+      }
+    }
+
     .track-meta {
       padding: 0 1.2rem 0.6rem;
       font-family: 'Share Tech Mono', monospace;
@@ -732,20 +744,38 @@
       display: block;
     }
 
-    .album-cards {
+    .album-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      width: 100%;
+      box-sizing: border-box;
       margin-top: 2rem;
     }
 
-    @media (max-width: 600px) {
-      .album-cards { grid-template-columns: 1fr; }
+    @media (max-width: 768px) {
+      .album-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .album-card {
       background: var(--dark);
       border: 1px solid var(--yellow);
+      width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .album-card iframe {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      height: 152px;
+      display: block;
+      border: none;
+      box-sizing: border-box;
     }
 
     .album-cover {
@@ -1591,7 +1621,7 @@
       </div>
 
       <!-- Album Cards -->
-      <div class="album-cards">
+      <div class="album-grid">
         <div class="album-card">
           <iframe src="https://open.spotify.com/embed/album/1gvDC4kknQb4QKXHSoddkH?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:0; display:block; border-bottom:1px solid var(--yellow);" title="Spotify — SUSHI BIZNIS TECHNO"></iframe>
           <div class="album-info">
